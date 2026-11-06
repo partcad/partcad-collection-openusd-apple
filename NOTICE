@@ -1,0 +1,19 @@
+partcad-collection-openusd-apple
+================================
+
+This PartCAD package serves Apple's AR Quick Look gallery as PartCAD parts.
+
+The code in this repository (the `apple_repo.py` repository plugin, the shared
+`usd_assets.py`, the PartCAD configuration and the tests) is:
+
+    Copyright 2026 PartCAD
+    Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+No asset is included in this repository. The assets, their layers and their
+textures are fetched on demand from https://developer.apple.com/quick-look-gallery/,
+and remain Apple's, under the terms of Apple's site
+(https://www.apple.com/legal/internet-services/terms/site.html), which let nobody
+mirror them; the plugin fetches a model for the person who asked for it.
+
+Apple, AR Quick Look and the models' brands are trademarks of their owners.
+This package is not affiliated with or endorsed by Apple.

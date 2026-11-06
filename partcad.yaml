@@ -1,0 +1,58 @@
+# PartCAD package: Apple's AR Quick Look gallery as parts, served by a repository plugin.
+#
+# Published as //pub/collection/openusd/apple/assets: this package is
+# //pub/collection/openusd/apple, and its one external dependency 'assets' is served
+# by the apple_repo plugin - Apple's AR Quick Look gallery
+# (developer.apple.com/quick-look-gallery): a part per USDZ model,
+# each 'type: usd', built by PartCAD's own part type of that name.
+name: //pub/collection/openusd/apple
+
+desc: |
+  The USDZ models of Apple's AR Quick Look gallery
+  (https://developer.apple.com/quick-look-gallery/) as PartCAD parts: a toy
+  biplane, a teapot, a Fender Stratocaster, a chameleon and the rest, a part
+  each. No geometry is vendored: every model is fetched from Apple when it is
+  first built, under the terms of Apple's site (see the README).
+url: https://developer.apple.com/quick-look-gallery/
+
+# The first release whose //builtin has the 'usd' part type every part here
+# is.
+partcad: ">=0.9.6"
+
+# Made to be looked at, rendered or simulated: nothing in them says they are
+# made to be manufactured. The plugin says the same of 'assets'.
+manufacturable: false
+
+docs:
+  name: Apple's AR Quick Look gallery for PartCAD
+  usage: |
+    ```shell
+    pc list parts //pub/collection/openusd/apple/assets
+    pc search parts -P //pub/collection/openusd/apple/assets -k teapot
+    pc inspect //pub/collection/openusd/apple/assets:toycar
+    ```
+
+dependencies:
+  assets:
+    type: external
+    plugin: :apple_repo
+    desc: Apple's AR Quick Look gallery, a part per USDZ model.
+
+repositories:
+  apple_repo:
+    type: basic
+    path: apple_repo.py
+    desc: Serves Apple's AR Quick Look gallery as 'usd' parts.
+    # Every parameter here is yours to change without touching this package,
+    # in your own ~/.partcad/config.yaml, under 'parameters', by the plugin's
+    # name ('//pub/collection/openusd/apple:apple_repo'), or - all but what says it is
+    # yours alone - in a package of your own, with an enrich of the plugin
+    # (see the README).
+    parameters:
+      max_size_mb:
+        type: float
+        default: 512
+        desc: >-
+          The most a part's USDZ may be, in MB: it crosses to PartCAD in one
+          answer. An asset found to be larger is refused, saying so, before
+          the rest of it is fetched.
